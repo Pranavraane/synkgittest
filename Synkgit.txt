@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+ 
+    stages {
+        stage('SAST') {
+            steps {
+                 script {
+                    try {
+                        bat 'D:/synk/snyk-win.exe code test D:/synk/juiceshop-master >> D:/synk/report14.txt'
+                    } catch (Exception e) {
+                        echo "Snyk test failed, but build continues"
+                    }
+                 }
+            }
+        }
+    }
+}
